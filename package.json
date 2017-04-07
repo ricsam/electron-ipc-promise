@@ -1,6 +1,6 @@
 {
-  "name": "electron-ipc-promise",
-  "version": "1.0.0",
+  "name": "ipc-promises",
+  "version": "1.0.1",
   "description": "A promise interface for the ipcRenderer and ipcMain in electron",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ricsam/electron-ipc-promise.git"
+    "url": "git+https://github.com/ricsam/ipc-promises.git"
   },
   "keywords": [
     "electron",
@@ -19,7 +19,7 @@
   "author": "Richard Samuelsson",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ricsam/electron-ipc-promise/issues"
+    "url": "https://github.com/ricsam/ipc-promises/issues"
   },
-  "homepage": "https://github.com/ricsam/electron-ipc-promise#readme"
+  "homepage": "https://github.com/ricsam/ipc-promises#readme"
 }
