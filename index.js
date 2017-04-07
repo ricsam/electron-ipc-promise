@@ -63,6 +63,9 @@ export default class ipc {
 
   normalListen(ononce, channel) { return new Promise((resolve, reject) => {
     this.proxy[ononce](channel, (event, data) => {
+      if (event.hasOwnProperty('sender') && event.sender.hasOwnProperty('id')) {
+        data.webContentsId = event.sender.id;
+      }
       resolve(data);
     });
   })}
