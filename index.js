@@ -1,9 +1,24 @@
-import { ipcRenderer } from 'electron';
-
-export default class ipc {
+// @flow
+class ipc {
   constructor(proxy) {
 
-    this.proxy = proxy;
+    const electron = require('electron');
+    try {
+      switch (proxy) {
+        case 'main':
+          this.proxy = electron.ipcMain;
+          break;
+        case 'renderer':
+          this.proxy = electron.ipcRenderer;
+          break;
+        default:
+          throw new Error('Invalid context name ' + proxy);
+      }
+    } catch (error) {
+      console.log(error);
+      return undefined;
+    }
+
 
     this.id = 0;
     this.timeout = 1500;
@@ -21,6 +36,7 @@ export default class ipc {
 
     if (!this.callbacks.hasOwnProperty(channel)) {
       this.proxy.on(channel, (event, cb_key, ...args) => {
+        debugger;
         this.callbacks[channel][cb_key](...args);
 
         this.proxy.removeListener(channel, this.callbacks[channel][cb_key]);
@@ -50,6 +66,7 @@ export default class ipc {
   })}
 
   respond(where, ...args) {
+    console.log(this.proxy);
     this.proxy.send(where.channel, where.id, ...args);
   }
 
@@ -71,3 +88,5 @@ export default class ipc {
   })}
 
 };
+
+module.exports = ipc;
